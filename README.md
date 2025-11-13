@@ -19,7 +19,7 @@ This website showcases my projects, technical strengths, and background in a way
 
 ---
 
-## Sections
+## Home Page
 
 ### **Home**
 
@@ -29,17 +29,6 @@ A clear, concise introduction with a hero section that highlights my role, speci
 
 A brief background on who I am, what I enjoy building, and the philosophies that guide my work.
 Includes personal interests and a short overview of my developer journey.
-
-### **Projects**
-
-A collection of my strongest work, featuring:
-
-* Descriptions of the problem each project solves
-* My role and responsibilities
-* Key technical decisions
-* Tech stack breakdown
-* Links to live demos and GitHub repositories
-* (For featured projects) Full case studies with deeper explanations
 
 ### **Skills**
 
@@ -54,13 +43,23 @@ A structured overview of my technical abilities, grouped by category:
 
 Simple, direct ways to get in touch — email, LinkedIn, GitHub — along with a brief note about the types of opportunities I’m open to.
 
-### **Blog / Notes** *(if enabled)*
-
-Short, digestible technical posts covering topics like performance tips, frontend architecture, or lessons learned from projects.
-
 ---
 
-## Technologies Used
+## Projects Page
+
+### **Projects**
+
+A collection of my strongest work, featuring:
+
+* Descriptions of the problem each project solves
+* My role and responsibilities
+* Key technical decisions
+* Tech stack breakdown
+* Links to live demos and GitHub repositories
+* (For featured projects) Full case studies with deeper explanations
+
+
+### Technologies Used
 
 * **Next.js (App Router)** — Routing, optimization, and overall framework
 * **React** — Component architecture
@@ -70,9 +69,8 @@ Short, digestible technical posts covering topics like performance tips, fronten
 * **MDX** *(optional)* — Markdown-based content
 * **Azure** — Deployment, preview environments, and analytics
 
----
 
-## Screenshots & Previews
+### Screenshots & Previews
 
 (Insert screenshots, GIFs, or links to your live demo here)
 
