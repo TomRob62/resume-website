@@ -12,7 +12,8 @@ export default function MobileMenuClient({ links }: { links: LinkItem[] }) {
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setOpen(false);
+    const frame = requestAnimationFrame(() => setOpen(false));
+    return () => cancelAnimationFrame(frame);
   }, [pathname]);
 
   useEffect(() => {

@@ -1,17 +1,7 @@
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import type { ComponentType } from "react";
+import MobileMenuClient from "./MobileMenuClient";
 
 type LinkItem = { href: string; label: string };
-
-// MobileMenuClient is a tiny client-only component that handles the
-// hamburger toggle and active-link highlighting on the client. Loading it
-// only for mobile keeps the desktop nav fully server-rendered (no client JS).
-// Provide a typed dynamic import so TypeScript knows the expected props.
-const MobileMenuClient = dynamic(async () => {
-  const mod = await import("./MobileMenuClient");
-  return mod as { default: ComponentType<{ links: LinkItem[] }> };
-}, { ssr: false });
 
 const links: LinkItem[] = [
   { href: "/", label: "Home" },
