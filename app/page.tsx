@@ -1,6 +1,6 @@
 import { InteractiveSection } from "./components/InteractiveSection";
 import Link from "next/link";
-import Image from "next/image";
+import ProfileImageClient from "./components/ProfileImageClient";
 
 type SectionConfig = {
   id: string;
@@ -113,14 +113,13 @@ export default function Home() {
 
           {/* Right profile picture */}
           <div className="shrink-0">
-            <Image
-              src="/images/headshot-purple-shirt.jpg"
+            <ProfileImageClient
+              src="/images/headshot_purple_shirt-large.jpg"
+              thumbSrc="/images/headshot_purple_shirt-small.jpg"
+              largeSrc="/images/headshot_purple_shirt-large.jpg"
               alt="Thomas Roberts"
-              width={160}
-              height={160}
-              className="h-40 w-40 rounded-2xl object-cover shadow-xl shadow-blue-500/30 ring-2 ring-blue-500/40 transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.02]"
-              priority
-              unoptimized
+              width={192}
+              height={250}
             />
           </div>
         </header>
