@@ -1,5 +1,6 @@
 import { InteractiveSection } from "./components/InteractiveSection";
 import Link from "next/link";
+import Image from "next/image";
 
 type SectionConfig = {
   id: string;
@@ -112,10 +113,14 @@ export default function Home() {
 
           {/* Right profile picture */}
           <div className="shrink-0">
-            <img
-              src="/profile.jpg"
+            <Image
+              src="/images/headshot-purple-shirt.jpg"
               alt="Thomas Roberts"
+              width={160}
+              height={160}
               className="h-40 w-40 rounded-2xl object-cover shadow-xl shadow-blue-500/30 ring-2 ring-blue-500/40 transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.02]"
+              priority
+              unoptimized
             />
           </div>
         </header>
