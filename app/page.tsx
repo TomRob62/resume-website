@@ -98,7 +98,6 @@ export default function Home() {
         <header className="flex flex-col items-center justify-between gap-10 md:flex-row md:items-start">
           {/* Left text block */}
           <div className="space-y-6 text-center md:max-w-3xl md:text-left">
-            <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Welcome, have a look around!</p>
             <h1 className="text-4xl font-semibold leading-tight text-slate-50 sm:text-5xl">
               Hi, I&apos;m Thomas Roberts!
             </h1>

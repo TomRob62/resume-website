@@ -18,8 +18,9 @@ export function InteractiveSection({ title, summary, details, align }: Interacti
       ? "md:self-start md:items-start md:text-left"
       : "md:self-end md:items-end md:text-right";
 
+  // Allow the details panel to grow freely on mobile when opened
   const detailVisibilityClasses = isOpen
-    ? "max-h-80 opacity-100"
+    ? "max-h-none opacity-100"
     : "max-h-0 opacity-0";
 
   return (
