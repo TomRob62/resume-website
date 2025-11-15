@@ -94,7 +94,7 @@ export default function Home() {
         <div className="absolute bottom-[-20%] right-[-10%] h-[36rem] w-[36rem] rounded-full bg-blue-500 opacity-25 blur-3xl" />
         <div className="absolute top-1/2 left-1/2 h-[20rem] w-[20rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500 opacity-10 blur-3xl" />
       </div>
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-16 md:px-12 lg:px-16">
+      <main className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-4 py-12 md:px-8 lg:px-12">
         <header className="flex flex-col items-center justify-between gap-10 md:flex-row md:items-start">
           {/* Left text block */}
           <div className="space-y-6 text-center md:max-w-3xl md:text-left">

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   src: string;
@@ -27,6 +27,9 @@ export default function ProfileImageClient({
 
   const open = () => setExpanded(true);
   const close = () => setExpanded(false);
+
+  // ref for the thumbnail container to handle outside clicks on desktop
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   const thumb = thumbSrc ?? src;
   const large = largeSrc ?? src;
@@ -89,15 +92,32 @@ export default function ProfileImageClient({
     return () => window.removeEventListener("resize", onResize);
   }, [expanded]);
 
+  // close when clicking outside the thumbnail/expanded container on desktop
+  useEffect(() => {
+    if (!(expanded && isDesktop)) return;
+    const onDocClick = (e: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        close();
+      }
+    };
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, [expanded, isDesktop]);
+
   return (
     <>
       {/* Inline tappable image (always in-flow, no layout shift until opened) */}
       <div
+        ref={rootRef}
         role="button"
         tabIndex={0}
         aria-pressed={expanded}
         aria-label={expanded ? "Collapse profile image" : "Expand profile image"}
-        onClick={open}
+        onClick={() => {
+          // desktop: toggle in-flow expansion; mobile: open modal
+          if (isDesktop) setExpanded((s) => !s);
+          else open();
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
@@ -108,17 +128,25 @@ export default function ProfileImageClient({
         onTouchStart={prefetchLarge}
         className="relative cursor-pointer"
       >
-        <div className="overflow-hidden rounded-2xl shadow-xl shadow-blue-500/30 ring-2 ring-blue-500/40 transition-transform duration-200 ease-out h-52 w-40 hover:-translate-y-1 hover:scale-[1.02]">
-          <Image
-            src={thumb}
-            alt={alt}
-            width={width}
-            height={height}
-            className="h-full w-full object-cover"
-            sizes="(max-width: 768px) 40vw, 160px"
-            unoptimized
-          />
-        </div>
+        {/* Desktop: when expanded, render the large image inline (in-flow). Otherwise render the thumbnail (priority). */}
+        {expanded && isDesktop ? (
+          <div className="overflow-hidden rounded-2xl shadow-2xl transition-all duration-300 ease-out w-[360px] max-w-[45vw]">
+            <Image src={large} alt={alt} width={360} height={468} className="block h-auto w-full object-cover" loading="lazy" unoptimized />
+          </div>
+        ) : (
+          <div className="overflow-hidden rounded-2xl shadow-xl shadow-blue-500/30 ring-2 ring-blue-500/40 transition-transform duration-200 ease-out h-52 w-40 hover:-translate-y-1 hover:scale-[1.02]">
+            <Image
+              src={thumb}
+              alt={alt}
+              width={width}
+              height={height}
+              className="h-full w-full object-cover"
+              sizes="(max-width: 768px) 40vw, 160px"
+              priority
+              unoptimized
+            />
+          </div>
+        )}
       </div>
 
       {/* Overlay modal for expanded state on mobile only. Renders on top of everything and uses opacity+scale for smooth animation. */}
